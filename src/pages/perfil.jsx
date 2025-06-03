@@ -9,60 +9,56 @@ function PerfilPage() {
       <div className="main-content">
         <Sidebar />
         <main className="page-content perfil-page">
-          <h1 className="page-title">Perfil do Usuário e Configurações</h1>
+          <h1 className="titulo-pagina">Meu Perfil e Configurações</h1>
           
-          <section className="form-section">
-            <h2 className="section-title">Meus Dados</h2>
-            <form className="form-perfil">
-              <div className="form-group">
+          <section className="form-container dados-pessoais">
+            <h2 className="subtitulo-secao">Dados do Usuário</h2>
+            <form className="formulario-perfil">
+              <div className="input-group">
                 <label htmlFor="nomeUsuario">Nome Completo:</label>
-                <input type="text" id="nomeUsuario" name="nomeUsuario" placeholder="Seu nome" />
+                <input type="text" id="nomeUsuario" name="nomeUsuario" className="input-campo" placeholder="Seu nome completo" defaultValue="Empreendedora C4" />
               </div>
-              <div className="form-group">
-                <label htmlFor="nomeNegocio">Nome do Negócio/Empreendimento:</label>
-                <input type="text" id="nomeNegocio" name="nomeNegocio" placeholder="Ex: Maria Doces Artesanais" />
+              <div className="input-group">
+                <label htmlFor="emailUsuario">E-mail:</label>
+                <input type="email" id="emailUsuario" name="emailUsuario" className="input-campo" placeholder="seuemail@exemplo.com" defaultValue="contato@c4app.com.br" />
               </div>
-              <div className="form-group">
-                <label htmlFor="emailUsuario">E-mail de Contato:</label>
-                <input type="email" id="emailUsuario" name="emailUsuario" placeholder="seuemail@exemplo.com" />
+              <div className="input-group">
+                <label htmlFor="nomeLoja">Nome da Loja/Negócio:</label>
+                <input type="text" id="nomeLoja" name="nomeLoja" className="input-campo" placeholder="Ex: C4 Store" defaultValue="C4 App Revendas" />
               </div>
-              {/* <div className="form-group">
-                <label htmlFor="senhaAtual">Senha Atual (para alteração):</label>
-                <input type="password" id="senhaAtual" name="senhaAtual" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="novaSenha">Nova Senha:</label>
-                <input type="password" id="novaSenha" name="novaSenha" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="confirmarNovaSenha">Confirmar Nova Senha:</label>
-                <input type="password" id="confirmarNovaSenha" name="confirmarNovaSenha" />
-              </div> */}
-              <button type="submit" className="btn-submit">Salvar Alterações</button>
+              <button type="button" className="botao-primario btn-salvar-dados">Salvar Dados Pessoais</button>
             </form>
           </section>
 
-          <section className="preferencias-section">
-            <h2 className="section-title">Preferências do Sistema</h2>
-            <div className="form-group">
-              <label htmlFor="temaApp">Tema do Aplicativo:</label>
-              <select id="temaApp" name="temaApp">
-                <option value="claro">Claro (Padrão)</option>
-                <option value="escuro">Escuro (Em breve)</option>
-              </select>
-            </div>
-            <div className="form-group">
-                <label>Notificações:</label>
-                <div className="checkbox-group">
-                    <input type="checkbox" id="notifEmail" name="notifEmail" defaultChecked/>
-                    <label htmlFor="notifEmail">Receber resumos por e-mail</label>
+          <section className="form-container preferencias-sistema">
+            <h2 className="subtitulo-secao">Preferências do Sistema</h2>
+            <form className="formulario-preferencias">
+              <div className="input-group">
+                <label htmlFor="temaApp">Tema Visual:</label>
+                <select id="temaApp" name="temaApp" className="input-campo">
+                  <option value="claro">Claro (Padrão)</option>
+                  <option value="escuro" disabled>Escuro (Em breve)</option>
+                </select>
+              </div>
+              <div className="input-group">
+                <label>Notificações por E-mail:</label>
+                <div className="checkbox-opcao">
+                  <input type="checkbox" id="notifResumoSemanal" name="notifResumoSemanal" defaultChecked />
+                  <label htmlFor="notifResumoSemanal" className="label-checkbox">Receber resumo financeiro semanal</label>
                 </div>
-                 <div className="checkbox-group">
-                    <input type="checkbox" id="notifPush" name="notifPush" />
-                    <label htmlFor="notifPush">Receber notificações push (Em breve)</label>
+                <div className="checkbox-opcao">
+                  <input type="checkbox" id="notifNovidades" name="notifNovidades" />
+                  <label htmlFor="notifNovidades" className="label-checkbox">Receber novidades e dicas do C4 App</label>
                 </div>
-            </div>
-             <button type="button" className="btn-secondary">Salvar Preferências</button>
+              </div>
+               {/* <div className="input-group">
+                <label htmlFor="alterarSenha">Alterar Senha:</label>
+                <input type="password" id="senhaAtual" name="senhaAtual" className="input-campo" placeholder="Senha Atual" />
+                <input type="password" id="novaSenha" name="novaSenha" className="input-campo" placeholder="Nova Senha" style={{marginTop: '10px'}} />
+                <input type="password" id="confirmarNovaSenha" name="confirmarNovaSenha" className="input-campo" placeholder="Confirmar Nova Senha" style={{marginTop: '10px'}} />
+              </div> */}
+              <button type="button" className="botao-primario btn-salvar-preferencias">Salvar Preferências</button>
+            </form>
           </section>
         </main>
       </div>
