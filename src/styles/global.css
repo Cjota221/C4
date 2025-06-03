@@ -1,0 +1,151 @@
+/* src/styles/global.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+/* Importar a fonte Bright - verificar se está disponível via Google Fonts ou se precisa de @font-face */
+/* Exemplo com @font-face se a fonte estiver local */
+/*
+@font-face {
+  font-family: 'Bright';
+  src: url('../assets/fonts/Bright-Regular.woff2') format('woff2'),
+       url('../assets/fonts/Bright-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+
+:root {
+  --cor-primaria-rosa: #DB1472; /* botões e destaques */
+  --cor-secundaria-amarelo: #F8B81F; /* alertas e detalhes */
+  --cor-texto-principal: #333333;
+  --cor-background-claro: #FFFFFF;
+  --cor-background-app: #f4f6f8;
+
+  --fonte-principal: 'Montserrat', sans-serif;
+  --fonte-destaque: 'Bright', cursive; /* Usar 'cursive' como fallback genérico */
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fonte-principal);
+  background-color: var(--cor-background-app);
+  color: var(--cor-texto-principal);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fonte-principal); /* Títulos principais com Montserrat */
+  color: var(--cor-primaria-rosa);
+}
+
+a {
+  color: var(--cor-primaria-rosa);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: var(--fonte-principal);
+  background-color: var(--cor-primaria-rosa);
+  color: var(--cor-background-claro);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #b30f5c; /* Um tom mais escuro de rosa para hover */
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.page-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: var(--cor-background-claro); /* Fundo branco para a área de conteúdo */
+}
+
+/* Estilos mobile-first */
+.app-header {
+  background-color: var(--cor-background-claro);
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 1.8em; /* Ajustado para Montserrat */
+    color: var(--cor-primaria-rosa);
+}
+
+.app-sidebar {
+  width: 200px; /* Largura fixa para desktop, será ajustada para mobile */
+  background-color: #f0f0f0; /* Cor temporária para a sidebar */
+  padding: 20px 0;
+  min-height: calc(100vh - 70px); /* Ajustar conforme altura do header */
+}
+
+.app-sidebar nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app-sidebar nav ul li a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--cor-texto-principal);
+  font-family: var(--fonte-principal);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app-sidebar nav ul li a:hover,
+.app-sidebar nav ul li a.active { /* Classe para link ativo */
+  background-color: var(--cor-primaria-rosa);
+  color: var(--cor-background-claro);
+}
+
+
+/* Placeholder para a fonte Bright. Se for uma fonte customizada, precisará ser carregada via @font-face */
+.texto-emocional {
+    font-family: var(--fonte-destaque); /* Aplicar a fonte Bright aqui */
+    color: var(--cor-secundaria-amarelo);
+}
+
+/* Para telas menores, a sidebar pode ser oculta e aberta por um botão (a ser implementado) */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+  .app-sidebar {
+    width: 100%;
+    min-height: auto;
+    /* Por enquanto, a sidebar ficará visível. Lógica de toggle virá depois */
+  }
+  .app-header h1 {
+    font-size: 1.5em;
+  }
+}
