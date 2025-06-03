@@ -1,26 +1,32 @@
 /* src/styles/global.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-/* Importar a fonte Bright - verificar se está disponível via Google Fonts ou se precisa de @font-face */
-/* Exemplo com @font-face se a fonte estiver local */
-/*
-@font-face {
-  font-family: 'Bright';
-  src: url('../assets/fonts/Bright-Regular.woff2') format('woff2'),
-       url('../assets/fonts/Bright-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap'); /* Pacifico como alternativa para "Bright" */
 
 :root {
-  --cor-primaria-rosa: #DB1472; /* botões e destaques */
-  --cor-secundaria-amarelo: #F8B81F; /* alertas e detalhes */
+  --cor-primaria-rosa: #DB1472;
+  --cor-secundaria-amarelo: #F8B81F;
+  
   --cor-texto-principal: #333333;
-  --cor-background-claro: #FFFFFF;
-  --cor-background-app: #f4f6f8;
+  --cor-texto-secundario: #555555;
+  --cor-texto-claro: #FFFFFF;
+  --cor-texto-erro: #D32F2F;
+  --cor-texto-aviso: #795548; /* Amarelo pode ser muito claro para texto */
+
+  --cor-fundo-app: #f9faff; /* Um branco levemente azulado/acinzentado para o fundo geral */
+  --cor-fundo-elemento: #FFFFFF;
+  --cor-borda: #e0e0e0;
+  --cor-borda-foco: var(--cor-primaria-rosa);
+  --cor-sombra: rgba(0, 0, 0, 0.1);
+
+  --cor-sucesso: #4CAF50;
+  --cor-aviso-fundo: #FFF9C4;
+
 
   --fonte-principal: 'Montserrat', sans-serif;
-  --fonte-destaque: 'Bright', cursive; /* Usar 'cursive' como fallback genérico */
+  --fonte-destaque: 'Pacifico', cursive; /* Usando Pacifico como substituto para "Bright Regular" */
+
+  --raio-borda: 8px;
+  --sombra-padrao: 0 4px 12px var(--cor-sombra);
+  --transicao-padrao: all 0.3s ease-in-out;
 }
 
 /* Reset básico */
@@ -30,42 +36,66 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px; /* Base para REM units */
+}
+
 body {
   font-family: var(--fonte-principal);
-  background-color: var(--cor-background-app);
+  background-color: var(--cor-fundo-app);
   color: var(--cor-texto-principal);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--fonte-principal); /* Títulos principais com Montserrat */
+  font-family: var(--fonte-principal);
+  font-weight: 600; /* Um pouco mais de peso para títulos */
   color: var(--cor-primaria-rosa);
+  margin-bottom: 0.75em;
+}
+
+.page-title { /* Usado em todas as páginas */
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--cor-primaria-rosa);
+}
+
+.section-title { /* Usado em todas as páginas */
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--cor-texto-principal); /* Um pouco menos destaque que o page-title */
+  border-bottom: 1px solid var(--cor-borda);
+  padding-bottom: 0.5em;
+}
+
+p {
+  margin-bottom: 1em;
+  color: var(--cor-texto-secundario);
 }
 
 a {
   color: var(--cor-primaria-rosa);
   text-decoration: none;
+  transition: var(--transicao-padrao);
 }
 
 a:hover {
   text-decoration: underline;
+  opacity: 0.8;
 }
 
-button {
-  font-family: var(--fonte-principal);
-  background-color: var(--cor-primaria-rosa);
-  color: var(--cor-background-claro);
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-button:hover {
-  background-color: #b30f5c; /* Um tom mais escuro de rosa para hover */
-}
-
+/* Layout Principal do App */
 .page-container {
   display: flex;
   flex-direction: column;
@@ -75,36 +105,42 @@ button:hover {
 .main-content {
   display: flex;
   flex-grow: 1;
+  /* Para mobile, a sidebar pode precisar de um comportamento diferente (ex: toggle) */
 }
 
 .page-content {
   flex-grow: 1;
   padding: 20px;
-  background-color: var(--cor-background-claro); /* Fundo branco para a área de conteúdo */
+  background-color: var(--cor-fundo-elemento); 
 }
 
-/* Estilos mobile-first */
+/* Header App */
 .app-header {
-  background-color: var(--cor-background-claro);
+  background-color: var(--cor-fundo-elemento);
   padding: 15px 20px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: sticky;
+  box-shadow: 0 2px 8px var(--cor-sombra);
+  position: sticky; /* Mantém o header fixo no topo */
   top: 0;
-  z-index: 1000;
+  z-index: 1000; /* Garante que fique acima de outros conteúdos */
+  border-bottom: 3px solid var(--cor-primaria-rosa);
 }
 
 .app-header h1 {
-    margin: 0;
-    font-size: 1.8em; /* Ajustado para Montserrat */
-    color: var(--cor-primaria-rosa);
+  margin: 0;
+  font-size: 1.8em;
+  color: var(--cor-primaria-rosa);
+  font-family: var(--fonte-destaque); /* Usando a fonte destaque no logo */
 }
 
+/* Sidebar App */
 .app-sidebar {
-  width: 200px; /* Largura fixa para desktop, será ajustada para mobile */
-  background-color: #f0f0f0; /* Cor temporária para a sidebar */
+  width: 220px; /* Largura padrão para desktop */
+  background-color: #f0f2f5; /* Um cinza claro para a sidebar */
   padding: 20px 0;
-  min-height: calc(100vh - 70px); /* Ajustar conforme altura do header */
+  min-height: calc(100vh - 73px); /* Ajustar conforme altura do header (70px + 3px border) */
+  box-shadow: 2px 0 5px var(--cor-sombra);
+  z-index: 900;
 }
 
 .app-sidebar nav ul {
@@ -116,26 +152,54 @@ button:hover {
 .app-sidebar nav ul li a {
   display: block;
   padding: 12px 20px;
-  color: var(--cor-texto-principal);
+  color: var(--cor-texto-secundario);
   font-family: var(--fonte-principal);
+  font-weight: 500;
   text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: var(--transicao-padrao);
+  border-left: 3px solid transparent; /* Indicador de item ativo */
 }
 
-.app-sidebar nav ul li a:hover,
-.app-sidebar nav ul li a.active { /* Classe para link ativo */
-  background-color: var(--cor-primaria-rosa);
-  color: var(--cor-background-claro);
+.app-sidebar nav ul li a:hover {
+  background-color: rgba(219, 20, 114, 0.1); /* Rosa bem clarinho */
+  color: var(--cor-primaria-rosa);
+  border-left: 3px solid var(--cor-primaria-rosa);
+  text-decoration: none;
 }
 
+.app-sidebar nav ul li a.active { /* Adicionar esta classe via JS/React Router (NavLink) */
+  background-color: rgba(219, 20, 114, 0.15);
+  color: var(--cor-primaria-rosa);
+  font-weight: 600;
+  border-left: 3px solid var(--cor-primaria-rosa);
+}
 
-/* Placeholder para a fonte Bright. Se for uma fonte customizada, precisará ser carregada via @font-face */
+/* Frases emocionais e destaques */
 .texto-emocional {
-    font-family: var(--fonte-destaque); /* Aplicar a fonte Bright aqui */
-    color: var(--cor-secundaria-amarelo);
+  font-family: var(--fonte-destaque);
+  color: var(--cor-secundaria-amarelo); /* Ou var(--cor-primaria-rosa) dependendo do contexto */
+  font-size: 1.2em; /* Exemplo */
 }
 
-/* Para telas menores, a sidebar pode ser oculta e aberta por um botão (a ser implementado) */
+.destaque-amarelo {
+  color: var(--cor-secundaria-amarelo);
+  font-weight: bold;
+}
+
+.destaque-preco {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--cor-sucesso); /* Verde para indicar um resultado positivo */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: #e8f5e9;
+  border-radius: var(--raio-borda);
+}
+
+
+/* Mobile First - Ajustes para Sidebar */
 @media (max-width: 768px) {
   .main-content {
     flex-direction: column;
@@ -143,9 +207,31 @@ button:hover {
   .app-sidebar {
     width: 100%;
     min-height: auto;
-    /* Por enquanto, a sidebar ficará visível. Lógica de toggle virá depois */
+    /* Em um app real, a sidebar seria um menu hamburguer aqui */
+    /* Por simplicidade, ela ficará empilhada por enquanto */
+    margin-bottom: 10px; 
+    box-shadow: 0 2px 5px var(--cor-sombra);
   }
-  .app-header h1 {
-    font-size: 1.5em;
+  .app-sidebar nav ul {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+    justify-content: center;
+  }
+  .app-sidebar nav ul li a {
+    padding: 10px 15px;
+    border-bottom: 2px solid transparent;
+    border-left: none;
+  }
+  .app-sidebar nav ul li a:hover,
+  .app-sidebar nav ul li a.active {
+    border-left: none;
+    border-bottom: 2px solid var(--cor-primaria-rosa);
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+  .section-title {
+    font-size: 1.15rem;
   }
 }
