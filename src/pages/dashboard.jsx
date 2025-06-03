@@ -1,46 +1,41 @@
 import React from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import CardResumo from '../components/CardResumo';
-import { formatarMoeda } from '../utils/formatarMoeda'; // Importar formatador
-import '../styles/dashboard.css';
+// CardResumo seria importado aqui se fosse usado como componente separado apenas visual
+// import CardResumo from '../components/CardResumo'; 
 
 function DashboardPage() {
-  // Valores simulados para os cards
-  const saldoAtualSimulado = 1250.75;
-  const receitasMesSimulado = 3800.00;
-  const despesasMesSimulado = 1550.25;
-  const lucroMesSimulado = receitasMesSimulado - despesasMesSimulado;
-
   return (
     <div className="page-container">
       <Header />
       <div className="main-content">
         <Sidebar />
         <main className="page-content dashboard-page">
-          <h1 className="page-title">Dashboard Financeiro</h1>
+          <h1 className="titulo-pagina">Meu Dashboard Financeiro</h1>
           
-          <section className="dashboard-resumo-cards">
-            <CardResumo titulo="Saldo Atual (Simulado)" valor={formatarMoeda(saldoAtualSimulado)} />
-            <CardResumo titulo="Receitas do Mês (Simulado)" valor={formatarMoeda(receitasMesSimulado)} />
-            <CardResumo titulo="Despesas do Mês (Simulado)" valor={formatarMoeda(despesasMesSimulado)} />
-            <CardResumo titulo="Lucro do Mês (Simulado)" valor={formatarMoeda(lucroMesSimulado)} />
-          </section>
-          
-          <section className="dashboard-grafico-area">
-            <h2 className="section-title">Evolução Financeira (Placeholder)</h2>
-            <div className="grafico-placeholder">
-              <p>Gráfico de evolução de receitas e despesas será exibido aqui.</p>
+          <section className="cards-container">
+            <div className="card-resumo">
+              <h3 className="card-titulo">Saldo Atual</h3>
+              <p className="card-valor">R$ 1.250,75</p>
+            </div>
+            <div className="card-resumo">
+              <h3 className="card-titulo">Vendas no Mês</h3>
+              <p className="card-valor">R$ 3.800,00</p>
+            </div>
+            <div className="card-resumo">
+              <h3 className="card-titulo">Lucro no Mês</h3>
+              <p className="card-valor">R$ 2.249,75</p>
+            </div>
+            <div className="card-resumo">
+              <h3 className="card-titulo">Meta do Mês</h3>
+              <p className="card-valor">R$ 3.000,00 <span className="card-detalhe">(75% alcançado)</span></p>
             </div>
           </section>
-
-          <section className="dashboard-atalhos">
-            <h2 className="section-title">Acesso Rápido</h2>
-            <div className="atalhos-container">
-              {/* No futuro, usar <Link> do react-router-dom ou history.push */}
-              <button className="btn-atalho" onClick={() => alert('Navegar para Registro de Venda')}>Registrar Venda</button>
-              <button className="btn-atalho" onClick={() => alert('Navegar para Nova Despesa')}>Nova Despesa</button>
-              <button className="btn-atalho" onClick={() => alert('Navegar para Ver Produtos')}>Ver Produtos</button>
+          
+          <section className="grafico-container">
+            <h2 className="subtitulo-secao">Evolução Financeira</h2>
+            <div className="placeholder-grafico">
+              <p className="texto-placeholder">Área reservada para o gráfico de evolução.</p>
             </div>
           </section>
         </main>
