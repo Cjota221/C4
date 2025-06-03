@@ -1,66 +1,278 @@
 /* src/styles/componentes.css */
-/* Estilos para componentes reutilizáveis como Header, Sidebar, Cards, Tabelas */
 
-/* Header já estilizado em global.css para posicionamento e layout básico */
-
-/* Sidebar já estilizada em global.css para posicionamento e layout básico */
-
-/* CardResumo */
-.card-resumo {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* --- Botões --- */
+.btn {
+  font-family: var(--fonte-principal);
+  padding: 10px 20px;
+  border-radius: var(--raio-borda);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
   text-align: center;
+  transition: var(--transicao-padrao);
+  display: inline-block; /* Para padding e margin funcionarem bem */
+  text-decoration: none; /* Caso seja usado em <a> */
 }
 
-.card-resumo h3 {
-  font-family: var(--fonte-principal);
+.btn-submit, .btn-primario { /* Botão principal rosa */
+  background-color: var(--cor-primaria-rosa);
+  color: var(--cor-texto-claro);
+}
+.btn-submit:hover, .btn-primario:hover {
+  background-color: #c71267; /* Rosa um pouco mais escuro */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.btn-secondary { /* Botão secundário (ex: filtros, exportar) */
+  background-color: transparent;
   color: var(--cor-primaria-rosa);
-  margin-bottom: 10px;
-  font-size: 1.2em;
+  border: 2px solid var(--cor-primaria-rosa);
+}
+.btn-secondary:hover {
+  background-color: rgba(219, 20, 114, 0.05); /* Fundo rosa bem sutil */
+  border-color: #c71267;
 }
 
-.card-resumo p {
+.btn-atalho { /* Usado no dashboard */
+  background-color: var(--cor-fundo-elemento);
+  color: var(--cor-primaria-rosa);
+  border: 1px solid var(--cor-borda);
+  box-shadow: 0 1px 3px var(--cor-sombra);
+  margin: 5px;
+}
+.btn-atalho:hover {
+  background-color: #f1f1f1;
+  border-color: var(--cor-primaria-rosa);
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--cor-primaria-rosa);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0.25em;
+}
+.btn-link:hover {
+    color: #c71267;
+}
+.btn-link-danger {
+    color: var(--cor-texto-erro);
+}
+.btn-link-danger:hover {
+    color: #a02525;
+}
+
+
+/* --- Inputs e Formulários --- */
+.form-section {
+  background-color: var(--cor-fundo-elemento);
+  padding: 20px;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-padrao);
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--cor-texto-secundario);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
   font-family: var(--fonte-principal);
-  font-size: 1.8em;
-  font-weight: bold;
+  font-size: 1rem;
   color: var(--cor-texto-principal);
+  transition: var(--transicao-padrao);
 }
 
-/* TabelaFinanceira */
-.tabela-financeira-container {
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--cor-borda-foco);
+  box-shadow: 0 0 0 2px rgba(219, 20, 114, 0.2); /* Glow rosa */
+}
+
+select {
+  appearance: none; /* Para estilização customizada da seta se necessário */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M5%208l5%205%205-5z%22%20fill%3D%22%23DB1472%22/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-grid { /* Para formulários com colunas, ex: Lucro Certo */
+  display: grid;
+  grid-template-columns: 1fr; /* Default para mobile */
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas para telas maiores */
+    gap: 1.5rem;
+  }
+  .form-grid .form-group:nth-child(odd):last-child { /* Se o último item for ímpar, ocupa a linha toda */
+     /* grid-column: span 2; */ /* Descomentar se precisar que o último item ocupe duas colunas */
+  }
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.75rem;
+  accent-color: var(--cor-primaria-rosa);
+}
+.checkbox-group label {
+  margin-bottom: 0; /* Reset margin para label do checkbox */
+  font-weight: normal;
+}
+
+/* Mensagens de erro e aviso */
+.error-message {
+  color: var(--cor-texto-erro);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+.warning-message {
+    background-color: var(--cor-aviso-fundo);
+    color: var(--cor-texto-aviso);
+    padding: 0.75rem 1rem;
+    border-radius: var(--raio-borda);
+    border: 1px solid var(--cor-secundaria-amarelo);
+    margin-top: 0.5rem;
+}
+
+
+/* --- Cards (CardResumo) --- */
+.card-resumo {
+  background-color: var(--cor-fundo-elemento);
+  padding: 20px;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-padrao);
+  text-align: center;
+  transition: var(--transicao-padrao);
+  border-left: 4px solid var(--cor-primaria-rosa); /* Detalhe rosa */
+}
+.card-resumo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px var(--cor-sombra);
+}
+
+.card-resumo h3 { /* Título do card */
+  font-family: var(--fonte-principal);
+  color: var(--cor-texto-secundario);
+  margin-bottom: 10px;
+  font-size: 1rem; /* Menor que títulos de seção */
+  font-weight: 500;
+}
+
+.card-resumo p { /* Valor do card */
+  font-family: var(--fonte-principal);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cor-primaria-rosa); /* Valor destacado em rosa */
+  margin-bottom: 0; /* Reset margin */
+}
+
+
+/* --- Tabelas --- */
+.tabela-placeholder, .tabela-relatorio-section table, .lista-section table {
   overflow-x: auto; /* Permite scroll horizontal em tabelas grandes */
-  background-color: #ffffff;
+  background-color: var(--cor-fundo-elemento);
   padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-padrao);
   margin-top: 20px;
 }
 
-.tabela-financeira-container table {
+table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.tabela-financeira-container th,
-.tabela-financeira-container td {
+th, td {
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--cor-borda);
   font-family: var(--fonte-principal);
+  vertical-align: middle;
 }
 
-.tabela-financeira-container th {
-  background-color: #f9f9f9;
+th {
+  background-color: #f8f9fa; /* Fundo levemente cinza para cabeçalho */
   color: var(--cor-primaria-rosa);
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
 }
 
-.tabela-financeira-container tbody tr:hover {
-  background-color: #f5f5f5;
+tbody tr:hover {
+  background-color: rgba(219, 20, 114, 0.03); /* Rosa bem sutil no hover da linha */
 }
 
-.tabela-financeira-container td {
-    color: var(--cor-texto-principal);
+td {
+  color: var(--cor-texto-secundario);
+  font-size: 0.95rem;
 }
+
+/* Placeholder e listas */
+.empty-state-placeholder {
+    text-align: center;
+    padding: 2rem;
+    color: var(--cor-texto-secundario);
+    font-style: italic;
+}
+
+.lista-despesas-placeholder li,
+.lista-sugestoes li {
+    background-color: #fff;
+    padding: 10px 15px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transicao-padrao);
+}
+.lista-sugestoes li:hover {
+    cursor: pointer;
+    background-color: rgba(219, 20, 114, 0.05);
+    border-left: 3px solid var(--cor-primaria-rosa);
+}
+
+.despesa-data { font-weight: 500; }
+.despesa-descricao { flex-grow: 1; margin: 0 10px; }
+.despesa-valor { font-weight: bold; color: var(--cor-primaria-rosa); }
