@@ -1,18 +1,27 @@
-// src/utils/calcularFrete.js
-export const calcularFreteBase = (peso, distancia) => {
-  // Lógica será implementada depois
-  // Exemplo simples:
-  // const taxaBase = 5;
-  // const taxaPorKg = 0.5;
-  // const taxaPorKm = 0.1;
-  // return taxaBase + (peso * taxaPorKg) + (distancia * taxaPorKm);
-  return 0;
-};
+/**
+ * @file Função para cálculo de frete unitário.
+ */
 
-export const adicionarTaxaUrgencia = (freteBase, taxaUrgenciaPercentual) => {
-  // Lógica será implementada depois
-  // return freteBase * (1 + taxaUrgenciaPercentual / 100);
-  return freteBase;
-};
+/**
+ * Divide o valor total do frete pela quantidade de peças compradas,
+ * gerando o custo de frete unitário.
+ *
+ * @param {number} freteTotal - O valor total pago pelo frete.
+ * @param {number} quantidadeDePecas - A quantidade de peças que vieram nesse frete.
+ * @returns {number} O custo do frete por unidade de peça. Retorna 0 se a quantidade for 0 ou inválida.
+ */
+export const calcularFreteUnitario = (freteTotal = 0, quantidadeDePecas = 0) => {
+  if (typeof freteTotal !== 'number' || typeof quantidadeDePecas !== 'number') {
+    console.error("freteTotal e quantidadeDePecas devem ser números.");
+    return 0;
+  }
 
-// Outras funções de cálculo de frete
+  if (quantidadeDePecas <= 0) {
+    // Não é possível dividir por zero ou uma quantidade negativa/nula de peças.
+    // Pode-se também lançar um erro ou retornar NaN, dependendo da política de erro.
+    return 0;
+  }
+
+  const freteUnitario = freteTotal / quantidadeDePecas;
+  return parseFloat(freteUnitario.toFixed(2));
+};
