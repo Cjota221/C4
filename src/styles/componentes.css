@@ -1,0 +1,66 @@
+/* src/styles/componentes.css */
+/* Estilos para componentes reutilizáveis como Header, Sidebar, Cards, Tabelas */
+
+/* Header já estilizado em global.css para posicionamento e layout básico */
+
+/* Sidebar já estilizada em global.css para posicionamento e layout básico */
+
+/* CardResumo */
+.card-resumo {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card-resumo h3 {
+  font-family: var(--fonte-principal);
+  color: var(--cor-primaria-rosa);
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.card-resumo p {
+  font-family: var(--fonte-principal);
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--cor-texto-principal);
+}
+
+/* TabelaFinanceira */
+.tabela-financeira-container {
+  overflow-x: auto; /* Permite scroll horizontal em tabelas grandes */
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.tabela-financeira-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela-financeira-container th,
+.tabela-financeira-container td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-family: var(--fonte-principal);
+}
+
+.tabela-financeira-container th {
+  background-color: #f9f9f9;
+  color: var(--cor-primaria-rosa);
+  font-weight: bold;
+}
+
+.tabela-financeira-container tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.tabela-financeira-container td {
+    color: var(--cor-texto-principal);
+}
