@@ -1,9 +1,87 @@
 /* src/styles/dashboard.css */
-/* Estilos específicos para a página de Dashboard */
 
-.dashboard-grid {
+/* Grid para os cards de resumo */
+.dashboard-resumo-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); /* Responsivo */
+  gap: 20px; /* Espaçamento entre os cards */
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 500px) and (max-width: 767px) {
+    .dashboard-resumo-cards {
+        grid-template-columns: repeat(2, 1fr); /* Duas colunas para tablets pequenos */
+    }
+}
+
+
+/* Área do gráfico */
+.dashboard-grafico-area {
+  background-color: var(--cor-fundo-elemento);
+  padding: 20px;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-padrao);
+  margin-bottom: 2rem;
+  min-height: 200px; /* Altura mínima para o placeholder do gráfico */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.grafico-placeholder p {
+  color: var(--cor-texto-secundario);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Área de atalhos */
+.dashboard-atalhos .atalhos-container {
+  display: flex;
+  flex-wrap: wrap; /* Para quebrar linha em telas menores */
+  gap: 15px; /* Espaçamento entre os botões de atalho */
+  justify-content: center; /* Centralizar os botões se houver espaço */
+}
+
+.dashboard-atalhos .btn-atalho {
+  flex-grow: 1; /* Para ocupar espaço disponível */
+  min-width: 150px; /* Largura mínima para cada botão */
+  padding: 12px 15px; /* Ajuste no padding dos botões de atalho */
+  font-size: 0.95rem;
+  background-color: var(--cor-fundo-elemento);
+  border: 1px solid var(--cor-primaria-rosa);
+  color: var(--cor-primaria-rosa);
+}
+
+.dashboard-atalhos .btn-atalho:hover {
+    background-color: var(--cor-primaria-rosa);
+    color: var(--cor-texto-claro);
+}
+
+
+/* Estilos para indicadores (exemplo, pode ser expandido) */
+.indicador-lucro {
+  color: var(--cor-sucesso); /* Verde */
+}
+.indicador-perda {
+  color: var(--cor-texto-erro); /* Vermelho */
+}
+.indicador-meta {
+  color: var(--cor-secundaria-amarelo); /* Amarelo */
+}
+
+/* Certifique-se que os títulos no dashboard (e outras páginas) 
+   herdam ou usam as classes .page-title e .section-title 
+   já estilizadas em global.css.
+*/
+.dashboard-page .page-title {
+  /* Pode ter algum ajuste específico se necessário, mas deve usar o global */
+  text-align: center; /* Exemplo de ajuste específico para dashboard */
+  margin-bottom: 2rem;
+}
+
+.dashboard-page .section-title {
+  /* Estilo padrão do global.css já deve ser suficiente */
+  text-align: left; /* Reset para o padrão se o page-title for centralizado */
+  border-bottom-style: dashed; /* Exemplo de variação */
 }
