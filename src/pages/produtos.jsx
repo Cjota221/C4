@@ -1,73 +1,81 @@
 import React from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-// import TabelaFinanceira from '../components/TabelaFinanceira'; // Para listar produtos
 
 function ProdutosPage() {
-  const colunasProdutos = ['Nome', 'Custo (R$)', 'Preço Venda (R$)', 'Estoque', 'Ações'];
-  const produtosFicticios = [
-    { nome: 'Produto Alfa', custo: '15,00', precoVenda: '30,00', estoque: 50 },
-    { nome: 'Serviço Beta', custo: 'N/A', precoVenda: '100,00', estoque: 'N/A' },
-    { nome: 'Produto Gama', custo: '22,50', precoVenda: '49,90', estoque: 25 },
-  ];
-
   return (
     <div className="page-container">
       <Header />
       <div className="main-content">
         <Sidebar />
         <main className="page-content produtos-page">
-          <h1 className="page-title">Cadastro e Gestão de Produtos/Serviços</h1>
+          <h1 className="titulo-pagina">Cadastro de Produtos e Serviços</h1>
           
-          <section className="form-section">
-            <h2 className="section-title">Adicionar Novo Produto/Serviço</h2>
-            <form className="form-produto">
-              <div className="form-group">
-                <label htmlFor="nomeProduto">Nome:</label>
-                <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Nome do produto ou serviço" />
+          <section className="form-container">
+            <h2 className="subtitulo-secao">Adicionar Novo Item</h2>
+            <form className="formulario-principal">
+              <div className="input-group">
+                <label htmlFor="nomeProduto">Nome do Produto/Serviço:</label>
+                <input type="text" id="nomeProduto" name="nomeProduto" className="input-campo" placeholder="Ex: Camiseta Estampada, Consultoria" />
               </div>
-              <div className="form-group">
-                <label htmlFor="custoProdutoCad">Custo Unitário (R$):</label>
-                <input type="text" id="custoProdutoCad" name="custoProdutoCad" placeholder="0,00 (opcional para serviços)" />
+              <div className="input-group">
+                <label htmlFor="custoUnitario">Custo Unitário (R$):</label>
+                <input type="number" id="custoUnitario" name="custoUnitario" className="input-campo" placeholder="Ex: 15.00 (opcional para serviços)" />
               </div>
-              <div className="form-group">
-                <label htmlFor="precoVendaProduto">Preço de Venda (R$):</label>
-                <input type="text" id="precoVendaProduto" name="precoVendaProduto" placeholder="0,00" />
+              <div className="input-group">
+                <label htmlFor="precoVenda">Preço de Venda (R$):</label>
+                <input type="number" id="precoVenda" name="precoVenda" className="input-campo" placeholder="Ex: 35.00" />
               </div>
-              <div className="form-group">
+              <div className="input-group">
                 <label htmlFor="quantidadeEstoque">Quantidade em Estoque:</label>
-                <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" placeholder="0 (deixe em branco se não aplicável)" min="0" />
+                <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" className="input-campo" placeholder="Ex: 50 (deixe 0 se não aplicável)" />
               </div>
-               <div className="form-group">
-                <label htmlFor="unidadeMedida">Unidade de Medida (Opcional):</label>
-                <input type="text" id="unidadeMedida" name="unidadeMedida" placeholder="Ex: Un, Kg, Peça, Hora" />
-              </div>
-              <button type="submit" className="btn-submit">Salvar Produto</button>
+              <button type="button" className="botao-primario btn-salvar-produto">Salvar Produto</button>
             </form>
           </section>
           
-          <section className="lista-section">
-            <h2 className="section-title">Produtos/Serviços Cadastrados</h2>
-            <div className="tabela-placeholder">
-              {/* <TabelaFinanceira colunas={colunasProdutos} dados={produtosFicticios.map(p => ({...p, acoes: 'Editar | Excluir'}))} /> */}
-              <table>
+          <section className="lista-container">
+            <h2 className="subtitulo-secao">Meus Produtos e Serviços</h2>
+            <div className="tabela-container">
+              <table className="tabela-dados">
                 <thead>
-                  <tr>{colunasProdutos.map(col => <th key={col}>{col}</th>)}</tr>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Custo (R$)</th>
+                    <th>Preço Venda (R$)</th>
+                    <th>Estoque</th>
+                    <th>Ações</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  {produtosFicticios.map((prod, idx) => (
-                    <tr key={idx}>
-                      <td>{prod.nome}</td>
-                      <td>{prod.custo}</td>
-                      <td>{prod.precoVenda}</td>
-                      <td>{prod.estoque}</td>
-                      <td><button className="btn-link">Editar</button> | <button className="btn-link btn-link-danger">Excluir</button></td>
-                    </tr>
-                  ))}
+                  {/* Linha de exemplo 1 */}
+                  <tr>
+                    <td>Camiseta Estampada Floral</td>
+                    <td>18.50</td>
+                    <td>45.00</td>
+                    <td>32</td>
+                    <td><button type="button" className="botao-editar">Editar</button></td>
+                  </tr>
+                  {/* Linha de exemplo 2 */}
+                  <tr>
+                    <td>Consultoria de Marketing Digital (Hora)</td>
+                    <td>N/A</td>
+                    <td>150.00</td>
+                    <td>N/A</td>
+                    <td><button type="button" className="botao-editar">Editar</button></td>
+                  </tr>
+                  {/* Linha de exemplo 3 */}
+                  <tr>
+                    <td>Bolsa de Couro Artesanal</td>
+                    <td>45.00</td>
+                    <td>120.00</td>
+                    <td>15</td>
+                    <td><button type="button" className="botao-editar">Editar</button></td>
+                  </tr>
                 </tbody>
               </table>
-              <p className="empty-state-placeholder">Nenhum produto cadastrado ainda.</p>
             </div>
+            <p className="observacao-lista">Listagem simulada. A funcionalidade de listagem e edição será implementada.</p>
           </section>
         </main>
       </div>
